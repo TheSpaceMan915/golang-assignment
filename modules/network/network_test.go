@@ -8,10 +8,9 @@
 - 2025-04-03: Добавлены базовые и контролируемые тесты передачи и подтверждения сообщений.
 */
 
-package test
+package network
 
 import (
-	"golangassignment/modules/network"
 	"sync"
 	"testing"
 	"time"
@@ -19,7 +18,7 @@ import (
 
 // Тест Receiver с гарантированной доставкой (rand = 0.0)
 func TestReceiver_AlwaysReceives(t *testing.T) {
-	msgChan := make(chan network.Message, 3)
+	msgChan := make(chan Message, 3)
 	ackChan := make(chan int, 3)
 
 	// Предсказуемое поведение: не теряем сообщения
@@ -27,7 +26,7 @@ func TestReceiver_AlwaysReceives(t *testing.T) {
 	randFloat32 = func() float32 { return 0.0 }
 	defer func() { randFloat32 = originalRand }()
 
-	msgs := []network.Message{
+	msgs := []Message{
 		{ID: 1, Body: "msg1"},
 		{ID: 2, Body: "msg2"},
 		{ID: 3, Body: "msg3"},
@@ -37,7 +36,7 @@ func TestReceiver_AlwaysReceives(t *testing.T) {
 	wg.Add(1)
 	go func() {
 		defer wg.Done()
-		network.Receiver(msgChan, ackChan)
+		Receiver(msgChan, ackChan)
 	}()
 
 	for _, m := range msgs {

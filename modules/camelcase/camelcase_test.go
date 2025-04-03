@@ -8,10 +8,9 @@
 - 2025-04-03: Добавлены базовые и граничные тестовые случаи.
 */
 
-package test
+package camelcase
 
 import (
-	"golangassignment/modules/camelcase"
 	"testing"
 )
 
@@ -29,7 +28,7 @@ func TestConvert_ValidInputs(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		result, err := camelcase.Convert(tt.input)
+		result, err := Convert(tt.input)
 		if err != nil {
 			t.Errorf("unexpected error for input %q: %v", tt.input, err)
 			continue
@@ -53,7 +52,7 @@ func TestConvert_InvalidInputs(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		_, err := camelcase.Convert(tt.input)
+		_, err := Convert(tt.input)
 		if (err != nil) != tt.expectError {
 			t.Errorf("Convert(%q) error = %v, expectError = %v", tt.input, err, tt.expectError)
 		}
