@@ -8,10 +8,10 @@
 - 2025-04-03: Добавлены базовые и граничные тестовые случаи.
 */
 
-package camelcase
+package test
 
 import (
-	"dsa/modules/camelcase"
+	"golangassignment/modules/camelcase"
 	"testing"
 )
 

@@ -11,8 +11,8 @@
 package main
 
 import (
-	"dsa/modules/camelcase"
 	"fmt"
+	"golangassignment/modules/camelcase"
 )
 
 func main() {
